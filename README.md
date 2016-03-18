@@ -17,8 +17,10 @@ amount of transactional emails they send.
 
 ### Transactional email...?
 Transactional email is email that is sent to notify users of something, or sometimes to prompt users to complete an
-action. For example, password reset emails and account verification emails are transactional. For more information, see 
-[What is transactional email?](https://blog.mailchimp.com/what-is-transactional-email).
+action. For example, password reset emails, account verification emails, and "you just got a message" emails are 
+all transactional emails. 
+
+For more information, see [What is transactional email?](https://blog.mailchimp.com/what-is-transactional-email).
 
 ## What is CakePHP?
 If you don't know what CakePHP is, you might be in the wrong place. CakePHP is a rapid-development PHP web application
