@@ -18,16 +18,16 @@ amount of transactional emails they send.
 ### Transactional email...?
 Transactional email is email that is sent to notify users of something, or sometimes to prompt users to complete an
 action. For example, password reset emails, account verification emails, and "you just got a message" emails are 
-all transactional emails. 
+all transactional. 
 
 For more information, see [What is transactional email?](https://blog.mailchimp.com/what-is-transactional-email).
 
 ## What is CakePHP?
-If you don't know what CakePHP is, you might be in the wrong place. CakePHP is a rapid-development PHP web application
-framework that uses the MVC (Models/Views/Controllers) architecture. It was first released in August 2005 and is now on
-version 3.0 and is more powerful than ever! One of CakePHP's great features is that it supports extending its own 
-functionality via the use of plugins, of which this is one. For more information about CakePHP, visit their website at
-http://cakephp.org.
+CakePHP is a rapid-development PHP web application framework that uses the MVC (Models/Views/Controllers) architecture. 
+It was first released in August 2005 and is now on version 3.0 and is more powerful than ever! One of CakePHP's great 
+features is that it supports extending its own functionality via the use of plugins, of which this is one. 
+
+For more information about CakePHP, visit their website at [CakePHP.org](http://cakephp.org).
 
 # Installation
 ## Command-Line Installation
