@@ -15,7 +15,7 @@ any CakePHP plugins for SparkPost. We hope that this plugin proves to be useful 
 especially those migrating from Mandrill or another paid email service who still aren't ready/able to pay for the tiny 
 amount of transactional emails they send.
 
-### Transactional email...?
+#### Transactional email...?
 Transactional email is email that is sent to notify users of something, or sometimes to prompt users to complete an
 action. For example, password reset emails, account verification emails, and "you just got a message" emails are 
 all transactional. 
@@ -65,7 +65,7 @@ request and we'll review and accept it as quickly as we can. However, before sub
 that your code follows our [Code Style Guidelines](http://syntaxera.io/pages/codestyle). PRs that don't follow the 
 style guidelines will be rejected! (politely, of course)
 
-### A Word on Forks...
+#### A Word on Forks...
 At Syntax Era we believe that certain software should be free, and this plugin is definitely in that category. That's 
 why we've made this repository public, and why we allow contributions from the community. If you want to take this 
 project in a different direction, thenust fork the repo and develop away! **Because we have no control over the source 
