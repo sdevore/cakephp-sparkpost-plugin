@@ -2,11 +2,11 @@
 /*
  * Copyright (c) 2015 Syntax Era Development Studio
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the MIT License (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://opensource.org/licenses/MIT
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 
-namespace plugins\SparkPost\src\Controller\Component;
+namespace SyntaxEra\SparkPostPlugin\Controller\Component;
 
+use Cake\Controller\Component;
+use Cake\Network\Http\Client;
+use SparkPost\SparkPost;
 
-class SparkPostComponent
+class SparkPostComponent extends Component
 {
 
 }

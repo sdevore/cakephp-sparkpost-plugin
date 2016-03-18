@@ -1,4 +1,4 @@
-# CakePHP SparkPost
+# CakePHP SparkPost Plugin
 A CakePHP plugin for sending mail via SparkPost's REST API
 
 # Introduction
@@ -37,7 +37,7 @@ its dependencies and keep them up-to-date and make use of Composer's awesome cla
 To install the plugin using Composer:
 
 1. Open a terminal and `cd` to your CakePHP application's root directory.
-2. Run `composer require syntaxera/cakephp-sparkpost` and wait for Composer to download the plugin and its dependencies.
+2. Run `composer require syntaxera/cakephp-sparkpost-plugin` to download the plugin and its dependencies.
 3. If you'd like, open `composer.json` for editing and modify the versioning schema for the plugin to your liking.
 
 ## Manual Installation
@@ -51,9 +51,9 @@ a reason.
 # Contributing
 ## Bug Reports
 If you find a bug in the plugin, or know of a missing feature you'd like to see added, feel free to create an issue on 
-the [Issues page](https://github.com/syntaxera/cakephp-sparkpost/issues). **When reporting a bug, be as descriptive as 
-possible. Include what you were doing when the bug occurred, what might have caused it to occur, and how to reproduce it
-if possible. Screenshots are nice, too.**
+the [Issues page](https://github.com/syntaxera/cakephp-sparkpost-plugin/issues). **When reporting a bug, be as 
+descriptive as possible. Include what you were doing when the bug occurred, what might have caused it to occur, and how 
+to reproduce it if possible. Screenshots are nice, too.**
 
 As a matter of courtesy, please use the search tool to verify that an issue has not already been reported before 
 creating a new issue. Feel free to add your comments/+1's to an open bug/feature request, but duplicate issues take time 
