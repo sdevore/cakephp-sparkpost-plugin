@@ -5,7 +5,7 @@ A CakePHP plugin for sending mail via SparkPost's REST API
 ## What is SparkPost?
 [SparkPost](https://www.sparkpost.com) is a web-based email delivery service that allows web application developers to
 send transactional email via a flexible and reliable REST API. You may have heard of other email delivery services such
-as [MailChimp](http://mailchimp.com), [Mandrill](https://mandrillapp.com), and [SendGrid](https://sendgrid.com).
+as [Mandrill](https://mandrillapp.com) and [SendGrid](https://sendgrid.com).
 
 Unfortunately these services are either not free or were once free but are no longer. Mandrill, in particular, used to 
 be the go-to choice for sending transactional email from web application because it was free and easy-to-use, however 
