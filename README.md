@@ -32,12 +32,22 @@ For more information about CakePHP, visit their website at [CakePHP.org](http://
 # Installation
 ## Command-Line Installation
 Using Composer is the recommended way of installing this plugin because it allows you to easily download the plugin and 
-its dependencies and keep them up-to-date and make use of Composer's awesome class auto-loader. Here's how to install 
-the plugin using Composer:
+its dependencies and keep them up-to-date and make use of Composer's awesome class auto-loader. 
+
+To install the plugin using Composer:
 
 1. Open a terminal and `cd` to your CakePHP application's root directory.
 2. Run `composer require syntaxera/cakephp-sparkpost` and wait for Composer to download the plugin and its dependencies.
 3. If you'd like, open `composer.json` for editing and modify the versioning schema for the plugin to your liking.
+
+## Manual Installation
+You can also install the plugin manually by clicking the "Download ZIP" button above and unzipping it into your CakePHP
+application's `plugins/` directory, however **if you do this you will need to download and install the plugin's 
+dependencies manually and you will have to perform updates manually as well.** Needless to say, this is not reccomended.
+ 
+If you're familiar with git you can also download the repository directly to your hard drive using `git clone`. This 
+allows you to stay on the bleeding-edge of the plugin's development, but be warned that it's called "bleeding-edge" for
+a reason. If you try to use this version in production setups, you're going to have a bad time.
 
 # Contributing
 ## Bug Reports
