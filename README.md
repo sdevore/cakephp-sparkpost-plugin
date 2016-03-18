@@ -76,7 +76,7 @@ code in a fork, however, we cannot provide support for that software.** Use it a
 Licensed under the MIT License (MIT). See `LICENSE.md` for details.
 
 ## Copyright
-Copyright (c) 2016 Syntax Era Development Studio
+Copyright (c) 2016 Syntax Era Development Studio. All rights reserved.
 
 ## Contributors
 ### Developers
