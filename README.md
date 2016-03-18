@@ -68,8 +68,8 @@ style guidelines will be rejected! (politely, of course)
 ### A Word on Forks...
 At Syntax Era we believe that certain software should be free, and this plugin is definitely in that category. That's 
 why we've made this repository public, and why we allow contributions from the community. If you want to take this 
-project in a different direction, then we say more power to you. Just fork the repo and develop away! **But because we
-have no control over the source code in a fork, we cannot provide support for that software.** Use it at your own risk.
+project in a different direction, thenust fork the repo and develop away! **Because we have no control over the source 
+code in a fork, however, we cannot provide support for that software.** Use it at your own risk.
 
 # Legal
 ## License
@@ -79,3 +79,8 @@ Licensed under the MIT License (MIT). See `LICENSE.md` for details.
 Copyright (c) 2016 Syntax Era Development Studio
 
 ## Contributors
+### Developers
+* **Jamison Bryant**, Lead Developer
+
+### Testers
+*Get your name/username here! Email us at testing@syntaxera.io to apply.*
