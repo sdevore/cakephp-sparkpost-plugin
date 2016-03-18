@@ -42,12 +42,11 @@ To install the plugin using Composer:
 
 ## Manual Installation
 You can also install the plugin manually by clicking the "Download ZIP" button above and unzipping it into your CakePHP
-application's `plugins/` directory, however **if you do this you will have to perform updates manually as well.** 
-Needless to say, this is not recommended.
+application's `plugins/` directory, **however if you do this you will have to perform updates manually as well.** 
  
 If you're familiar with git you can also download the repository directly to your hard drive using `git clone`. This 
 allows you to stay on the bleeding-edge of the plugin's development, but be warned that it's called "bleeding-edge" for
-a reason. If you try to use this version in production setups, you're going to have a bad time.
+a reason.
 
 # Contributing
 ## Bug Reports
