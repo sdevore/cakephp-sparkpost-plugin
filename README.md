@@ -50,8 +50,8 @@ a reason.
 
 # Contributing
 ## Bug Reports
-If you find a bug in the plugin, or know of a missing feature you'd like to see added, feel free to let us know on the 
-[Issues page](https://github.com/syntaxera/cakephp-sparkpost/issues). **When reporting a bug, be as descriptive as 
+If you find a bug in the plugin, or know of a missing feature you'd like to see added, feel free to create an issue on 
+the [Issues page](https://github.com/syntaxera/cakephp-sparkpost/issues). **When reporting a bug, be as descriptive as 
 possible. Include what you were doing when the bug occurred, what might have caused it to occur, and how to reproduce it
 if possible. Screenshots are nice, too.**
 
@@ -60,10 +60,10 @@ creating a new issue. Feel free to add your comments/+1's to an open bug/feature
 to prune and crowd out new, important issues.
 
 ## Pull Requests
-Feeling creative? Found a bug you think you can fix? By all means go ahead! Clone the affected branch, fix the bug, then 
-create a pull request and we'll review and accept it as quickly as we can. However, before submitting a pull request, 
-please be sure that your code follows our [Code Style Guidelines](http://syntaxera.io/pages/codestyle). PRs that don't 
-follow the guidelines will be rejected! (politely, of course)
+Found a bug you think you can fix? By all means go ahead! Clone the affected branch, fix the bug, then create a pull 
+request and we'll review and accept it as quickly as we can. However, before submitting a pull request, please be sure 
+that your code follows our [Code Style Guidelines](http://syntaxera.io/pages/codestyle). PRs that don't follow the 
+style guidelines will be rejected! (politely, of course)
 
 ### A Word on Forks...
 At Syntax Era we believe that certain software should be free, and this plugin is definitely in that category. That's 
