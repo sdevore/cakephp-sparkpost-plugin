@@ -20,7 +20,7 @@
   "repositories":[{
     "type": "git",
     "url": "https://github.com/syntaxera/cakephp-sparkpost-plugin.git"
-  },
+  }],
   "require": {
     "sparkpost/php-sparkpost": "~1.0"
   },
