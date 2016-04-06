@@ -29,9 +29,12 @@ class MessageComponent extends Component
 {
     public function sendTestMessage()
     {
+        // Load configuration settings
+        Configure::load('SparkPost.config');
+
         // Set up a request adapter
         $httpAdapter = new CakeHttpAdapter(new Client());
-        $sparkPostApi = new SparkPost($httpAdapter, [ 'key' => 'YOUR_API_KEY' ]);
+        $sparkPostApi = new SparkPost($httpAdapter, [ 'key' => $this->config('apiKey') ]);
 
         // Build a test message
         $testMessage = [
