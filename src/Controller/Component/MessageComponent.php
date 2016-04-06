@@ -31,7 +31,7 @@ class MessageComponent extends Component
     {
         // Set up a request adapter
         $httpAdapter = new CakeHttpAdapter(new Client());
-        $sparkPostApi = new SparkPost($httpAdapter, [ 'key' => '856be809f88f48b717f8efac30d86be5a0f6b3f0' ]);
+        $sparkPostApi = new SparkPost($httpAdapter, [ 'key' => 'YOUR_API_KEY' ]);
 
         // Build a test message
         $testMessage = [
