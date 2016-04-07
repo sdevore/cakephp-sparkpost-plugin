@@ -18,16 +18,21 @@
 namespace SparkPost\Mailer\Transport;
 
 use Cake\Core\Configure;
-use Cake\Error\Debugger;
 use Cake\Mailer\AbstractTransport;
 use Cake\Mailer\Email;
 use Cake\Network\Exception\BadRequestException;
-use Cake\Network\Exception\NotAcceptableException;
 use Cake\Network\Http\Client;
 use Ivory\HttpAdapter\CakeHttpAdapter;
 use SparkPost\APIResponseException;
 use SparkPost\SparkPost;
 
+/**
+ * Spark Post Transport Class
+ *
+ * Provides an interface between the CakePHP Email functionality and the SparkPost API.
+ *
+ * @package SparkPost\Mailer\Transport
+ */
 class SparkPostTransport extends AbstractTransport
 {
     /**
