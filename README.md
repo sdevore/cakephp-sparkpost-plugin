@@ -54,36 +54,53 @@ Because the plugin is implemented as a Transport, you can use it from just about
 ## From a Controller
 Add the following to your application's config file:
 
-    ```php
-    'SparkPost' => [
-        'Api' => [
-            'key' => 'd828e90085c4f09ffd1f7ca32b06b9b2dada1f49'
-        ]
+```php
+'SparkPost' => [
+    'Api' => [
+        'key' => 'd828e90085c4f09ffd1f7ca32b06b9b2dada1f49'
     ]
-    ```
+]
+```
 
 Then add the following to your controller:
 
-    ```php
-    // Configure email transport
-    Email::configTransport('sparkpost', [
-        'className' => 'SparkPost.SparkPost',
-        'apiKey' => Configure::read('SparkPost.Api.key')
-    ]);
-    
-    // Create email message
-    $email = new Email();
-    $email->transport('sparkpost');
-    
-    $email->from(['from@sparkpostbox.com' => 'From Envelope']);
-    $email->to(['robojamison@gmail.com' => 'Jamison Bryant']);
-    $email->subject('This is a test');
-    $email->send('Hello world');
-    ```
+```php
+// Configure email transport
+Email::configTransport('sparkpost', [
+    'className' => 'SparkPost.SparkPost',
+    'apiKey' => Configure::read('SparkPost.Api.key')
+]);
+
+// Create email message
+$email = new Email();
+$email->transport('sparkpost');
+
+$email->from(['from@sparkpostbox.com' => 'From Envelope']);
+$email->to(['robojamison@gmail.com' => 'Jamison Bryant']);
+$email->subject('This is a test');
+$email->send('Hello world');
+```       
 
 ## From the Cake CLI
 Exactly the same process as sending from a controller, however you should additionally specify your hostname with 
 `$email->domain('www.example.com');` because CLI environments do not have hostnames. 
+
+# Testing
+You can test the plugin using CakePHP's built-in support for PHPUnit, however this assumes two things:
+
+ 1. You have PHPUnit globally installed and the `phpunit` command available from the command-line
+ 2. You didn't delete the `phpunit.xml.dist` that is created with new CakePHP 3.x applications
+
+To test the plugin, `cd` to your application's root directory and run:
+
+```
+phpunit vendor/syntaxera/cakephp-sparkpost-plugin
+```
+    
+If that doesn't work, run `composer dump-autoload` and try again. **NOTE:** The plugin test suite contains a large 
+number of placeholder tests that don't actually test any functionality yet but are there for development purposes. These 
+tests will be removed eventually, but for know be aware that if you see that _n_ tests passed, that doesn't necessarily 
+mean that _n_ tests were actually conducted, only that _n_ test _functions_ were called.
 
 # Contributing
 ## Bug Reports
