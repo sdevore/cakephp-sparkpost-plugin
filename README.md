@@ -37,9 +37,8 @@ its dependencies and keep them up-to-date and make use of Composer's awesome cla
 To install the plugin using Composer:
 
 1. Open a terminal and `cd` to your CakePHP application's root directory.
-2. Open the file `composer.json`, find the line that reads `minimum-stability` and change it to `dev`.
-3. Run `composer require syntaxera/cakephp-sparkpost-plugin` to download the plugin and its dependencies.
-4. If you'd like, open `composer.json` for editing and modify the versioning schema for the plugin to your liking.
+2. Run `composer require syntaxera/cakephp-sparkpost-plugin` to download the plugin and its dependencies.
+3. If you'd like, open `composer.json` for editing and modify the versioning schema for the plugin to your liking.
 
 ## Manual Installation
 You can also install the plugin manually by clicking the "Download ZIP" button above and unzipping it into your CakePHP
@@ -48,6 +47,43 @@ application's `plugins/` directory, **however if you do this you will have to pe
 If you're familiar with git you can also download the repository directly to your hard drive using `git clone`. This
 allows you to stay on the bleeding-edge of the plugin's development, but be warned that it's called "bleeding-edge" for
 a reason.
+
+# Usage
+Because the plugin is implemented as a Transport, you can use it from just about any layer of your CakePHP application.
+
+## From a Controller
+Add the following to your application's config file:
+
+    ```php
+    'SparkPost' => [
+        'Api' => [
+            'key' => 'd828e90085c4f09ffd1f7ca32b06b9b2dada1f49'
+        ]
+    ]
+    ```
+
+Then add the following to your controller:
+
+    ```php
+    // Configure email transport
+    Email::configTransport('sparkpost', [
+        'className' => 'SparkPost.SparkPost',
+        'apiKey' => Configure::read('SparkPost.Api.key')
+    ]);
+    
+    // Create email message
+    $email = new Email();
+    $email->transport('sparkpost');
+    
+    $email->from(['from@sparkpostbox.com' => 'From Envelope']);
+    $email->to(['robojamison@gmail.com' => 'Jamison Bryant']);
+    $email->subject('This is a test');
+    $email->send('Hello world');
+    ```
+
+## From the Cake CLI
+Exactly the same process as sending from a controller, however you should additionally specify your hostname with 
+`$email->domain('www.example.com');` because CLI environments do not have hostnames. 
 
 # Contributing
 ## Bug Reports
@@ -78,10 +114,3 @@ Licensed under the MIT License (MIT). See `LICENSE.md` for details.
 
 ## Copyright
 Copyright (c) 2016 Syntax Era Development Studio. All rights reserved.
-
-## Contributors
-### Developers
-* **Jamison Bryant**, Lead Developer
-
-### Testers
-*Get your name/username here! Email us at testing@syntaxera.io to apply.*
