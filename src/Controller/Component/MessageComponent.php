@@ -19,7 +19,6 @@
 namespace SparkPost\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Core\Configure;
 use Cake\Network\Http\Client;
 use Ivory\HttpAdapter\CakeHttpAdapter;
 use SparkPost\APIResponseException;
@@ -29,9 +28,6 @@ class MessageComponent extends Component
 {
     public function sendTestMessage()
     {
-        // Load configuration settings
-        Configure::load('SparkPost.config');
-
         // Set up a request adapter
         $httpAdapter = new CakeHttpAdapter(new Client());
         $sparkPostApi = new SparkPost($httpAdapter, [ 'key' => $this->config('apiKey') ]);
