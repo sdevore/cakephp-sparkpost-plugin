@@ -1,6 +1,8 @@
 # CakePHP SparkPost Plugin
 A CakePHP plugin for sending mail via SparkPost's REST API
 
+![alt text](https://api.travis-ci.org/syntaxera/cakephp-sparkpost-plugin.png "Travis CI build status")
+
 # Introduction
 ## What is SparkPost?
 [SparkPost](https://www.sparkpost.com) is a web-based email delivery service that allows web application developers to
@@ -79,11 +81,11 @@ $email->from(['from@sparkpostbox.com' => 'From Envelope']);
 $email->to(['robojamison@gmail.com' => 'Jamison Bryant']);
 $email->subject('This is a test');
 $email->send('Hello world');
-```       
+```
 
 ## From the Cake CLI
-Exactly the same process as sending from a controller, however you should additionally specify your hostname with 
-`$email->domain('www.example.com');` because CLI environments do not have hostnames. 
+Exactly the same process as sending from a controller, however you should additionally specify your hostname with
+`$email->domain('www.example.com');` because CLI environments do not have hostnames.
 
 # Testing
 You can test the plugin using CakePHP's built-in support for PHPUnit, however this assumes two things:
@@ -96,10 +98,10 @@ To test the plugin, `cd` to your application's root directory and run:
 ```
 phpunit vendor/syntaxera/cakephp-sparkpost-plugin
 ```
-    
-If that doesn't work, run `composer dump-autoload` and try again. **NOTE:** The plugin test suite contains a large 
-number of placeholder tests that don't actually test any functionality yet but are there for development purposes. These 
-tests will be removed eventually, but for know be aware that if you see that _n_ tests passed, that doesn't necessarily 
+
+If that doesn't work, run `composer dump-autoload` and try again. **NOTE:** The plugin test suite contains a large
+number of placeholder tests that don't actually test any functionality yet but are there for development purposes. These
+tests will be removed eventually, but for know be aware that if you see that _n_ tests passed, that doesn't necessarily
 mean that _n_ tests were actually conducted, only that _n_ test _functions_ were called.
 
 # Contributing

@@ -1,0 +1,16 @@
+language: php
+
+sudo: false
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+
+before_script:
+  - git clone git@github.com:cakephp/app.git ../cakephp && cd ../cakephp
+  - cp config/app.default.php config/app.php
+  - composer update
+  - mkdir -p plugins/SyntaxEra
+  - mv ../cakephp-sparkpost-plugin plugins/SyntaxEra/SparkPost  
+  - cp plugins/SyntaxEra/SparkPost/phpunit.xml.dist ./phpunit.xml.dist  
