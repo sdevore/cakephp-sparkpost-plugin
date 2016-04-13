@@ -50,21 +50,27 @@ If you're familiar with git you can also download the repository directly to you
 allows you to stay on the bleeding-edge of the plugin's development, but be warned that it's called "bleeding-edge" for
 a reason.
 
-# Usage
-Because the plugin is implemented as a Transport, you can use it from just about any layer of your CakePHP application.
+# Setup
+To add the plugin to your application, activate the plugin in your application's bootstrap file:
 
-## From a Controller
-Add the following to your application's config file:
+```php
+Plugin::load('SparkPost');
+```
+
+Then add the following to your application's config file:
 
 ```php
 'SparkPost' => [
     'Api' => [
-        'key' => 'd828e90085c4f09ffd1f7ca32b06b9b2dada1f49'
+        'key' => 'YOUR_SPARKPOST_API_KEY'
     ]
 ]
 ```
 
-Then add the following to your controller:
+# Usage
+Because the plugin is implemented as a Transport, you can use it from just about any layer of your CakePHP application.
+
+## From a Controller
 
 ```php
 // Configure email transport
@@ -77,10 +83,10 @@ Email::configTransport('sparkpost', [
 $email = new Email();
 $email->transport('sparkpost');
 
-$email->from(['from@sparkpostbox.com' => 'From Envelope']);
-$email->to(['robojamison@gmail.com' => 'Jamison Bryant']);
-$email->subject('This is a test');
-$email->send('Hello world');
+$email->from(['FROM_ADDRESS' => 'FROM_NAME']);
+$email->to(['TO_ADDRESS' => 'TO_NAME']);
+$email->subject('SUBJECT');
+$email->send('BODY');
 ```
 
 ## From the Cake CLI
@@ -93,16 +99,30 @@ You can test the plugin using CakePHP's built-in support for PHPUnit, however th
  1. You have PHPUnit globally installed and the `phpunit` command available from the command-line
  2. You didn't delete the `phpunit.xml.dist` that is created with new CakePHP 3.x applications
 
-To test the plugin, `cd` to your application's root directory and run:
+To test the plugin, first add its test suites to the application's PHPUnit config file:
 
-```
-phpunit vendor/syntaxera/cakephp-sparkpost-plugin
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit ...>
+    ...
+    <testsuites>
+        <testsuite name="App Test Suite">
+            <directory>./tests/TestCase</directory>
+        </testsuite>
+
+        <!-- Add these lines -->
+        <testsuite name="SparkPost Plugin Test Suite">
+            <directory>./vendor/syntaxera/cakephp-sparkpost-plugin/tests/TestCase</directory>
+        </testsuite>
+    </testsuites>
+    ...
+</phpunit>
 ```
 
-If that doesn't work, run `composer dump-autoload` and try again. **NOTE:** The plugin test suite contains a large
-number of placeholder tests that don't actually test any functionality yet but are there for development purposes. These
-tests will be removed eventually, but for know be aware that if you see that _n_ tests passed, that doesn't necessarily
-mean that _n_ tests were actually conducted, only that _n_ test _functions_ were called.
+Next, `cd` to your application's root directory and run `phpunit`.
+
+If that doesn't work, run `composer dump-autoload` and try again.
 
 # Contributing
 ## Bug Reports
