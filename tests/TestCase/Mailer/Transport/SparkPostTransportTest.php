@@ -19,6 +19,8 @@
 namespace SparkPost\Test\TestCase\Mailer\Transport;
 
 use Cake\Core\Configure;
+use Cake\Error\Debugger;
+use Cake\Mailer\Email;
 use Cake\TestSuite\TestCase;
 use SparkPost\Mailer\Transport\SparkPostTransport;
 
@@ -43,15 +45,33 @@ class SparkPostTransportTest extends TestCase
 {
     private $apiKey;
 
+    /**
+     * Returns an Email object with the SparkPost transport pre-configured.
+     */
+    private function createEmail()
+    {
+        // Configure email transport
+        Email::configTransport('sparkpost', [
+            'className' => 'SparkPost.SparkPost',
+            'apiKey' => Configure::read('SparkPost.Api.key')
+        ]);
+
+        // Configure email
+        $email = new Email();
+        $email->transport('sparkpost');
+
+        // Return configured email
+        return $email;
+    }
+
+    //=====================================================================
+    // SETUP/TEARDOWN
+    //=====================================================================
+
     public function setUp()
     {
         parent::setUp();
         $this->apiKey = Configure::read('SparkPost.Api.key');
-    }
-
-    public function testTests()
-    {
-        $t = new SparkPostTransport();
     }
 
     //=====================================================================
@@ -138,10 +158,6 @@ class SparkPostTransportTest extends TestCase
 	}
 
     public function testSubresourceNotFound() {
-		// TODO: Implement me if needed
-	}
-
-    public function testUnsupportedContentType() {
 		// TODO: Implement me if needed
 	}
 
