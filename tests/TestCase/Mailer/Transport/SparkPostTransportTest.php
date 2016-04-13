@@ -20,6 +20,7 @@ namespace SparkPost\Test\TestCase\Mailer\Transport;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use SparkPost\Mailer\Transport\SparkPostTransport;
 
 /**
  * SparkPost Transport Test Class
@@ -46,6 +47,11 @@ class SparkPostTransportTest extends TestCase
     {
         parent::setUp();
         $this->apiKey = Configure::read('SparkPost.Api.key');
+    }
+
+    public function testTests()
+    {
+        $t = new SparkPostTransport();
     }
 
     //=====================================================================
