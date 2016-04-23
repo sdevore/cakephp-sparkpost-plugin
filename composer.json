@@ -1,12 +1,16 @@
 {
-  "name": "syntaxera/cakephp-sparkpost-plugin",
+  "name": "sdevore/cakephp-sparkpost-plugin",
   "description": "A CakePHP plugin for sending mail via SparkPost's REST API",
   "type": "cakephp-plugin",
   "authors": [{
     "name": "Jamison Bryant",
     "homepage": "http://jamisonbryant.com",
     "role": "Lead Developer"
-  }, {
+  },{
+    "name": "Sam DeVore",
+    "homepage": "http://sdevore.com",
+    "role": "Developer"
+  },  {
     "name": "CakePHP Community",
     "homepage": "https://github.com/syntaxera/cakephp-sparkpost-plugin/graphs/contributors"
   }],
@@ -22,6 +26,12 @@
   },
   "require-dev": {
     "phpunit/phpunit": "4.1.*"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2..x-dev"
+    },
+    "installer-name": "SparkPost"
   },
   "autoload": {
     "psr-4": {
