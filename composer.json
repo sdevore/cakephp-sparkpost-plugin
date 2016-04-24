@@ -20,6 +20,12 @@
   "require": {
     "sparkpost/php-sparkpost": "~1.0"
   },
+   "extra": {
+    "branch-alias": {
+      "dev-master": "2.8.x-dev"
+    },
+    "installer-name": "SparkPost"
+  }
   "require-dev": {
     "phpunit/phpunit": "4.1.*"
   },
