@@ -9,7 +9,7 @@ php:
 
 before_script:
   - git clone https://github.com/cakephp/app.git ../app && cd ../app
-  - composer install --dev --no-interaction
+  - composer install --no-interaction
   - cp config/app.default.php config/app.php
   - mkdir -p plugins/SyntaxEra
   - mv ../cakephp-sparkpost-plugin plugins/SyntaxEra/SparkPost
