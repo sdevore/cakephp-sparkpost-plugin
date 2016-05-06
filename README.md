@@ -2,7 +2,7 @@
 A CakePHP plugin for sending mail via SparkPost's REST API
 
 ![Build Status](https://api.travis-ci.org/syntaxera/cakephp-sparkpost-plugin.png "Travis CI build status")
-[![Coverage Status](https://coveralls.io/repos/github/syntaxera/cakephp-sparkpost-plugin/badge.svg?branch=master)](https://coveralls.io/github/syntaxera/cakephp-sparkpost-plugin?branch=master)
+![Coverage Status](https://coveralls.io/repos/github/syntaxera/cakephp-sparkpost-plugin/badge.svg?branch=master)
 
 # Introduction
 ## What is SparkPost?

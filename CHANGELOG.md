@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
-## [unreleased]
+## [v0.4.3] - 2016-05-06
 ### Added
 - Coveralls integration and README shield image
 
