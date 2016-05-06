@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## [v0.4.5] - 2016-05-06
+### Added
+- shield image for MIT project license (@dereuromark)
+- shield image for Coveralls code coverage (@dereuromark)
+- shield image for Packagist download count (@robojamison)
+- shield image for Packagist latest stable/unstable versions (@robojamison)
+
 ## [v0.4.4] - 2016-05-06
 ### Fixed
 - Coveralls integration not working (@robojamison)
