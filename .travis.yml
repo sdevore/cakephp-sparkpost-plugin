@@ -13,11 +13,12 @@ before_script:
   - cp config/app.default.php config/app.php
   - mkdir -p plugins/SyntaxEra
   - mv ../cakephp-sparkpost-plugin plugins/SyntaxEra/SparkPost
-  - cp plugins/SyntaxEra/SparkPost/phpunit.xml.dist ./phpunit.xml.dist
+  - cp plugins/SyntaxEra/SparkPost/phpunit.xml.dist .
+  - cp plugins/SyntaxEra/SparkPost/.coveralls.yml .
 
 script:
-  - mkdir -p tmp/build/coverage
+  - mkdir -p build/logs
   - ./vendor/bin/phpunit
 
 after_success:
-  - php ./vendor/bin/coveralls -v
+  - ./vendor/bin/coveralls -v
