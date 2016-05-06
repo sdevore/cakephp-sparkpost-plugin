@@ -33,4 +33,7 @@
             <directory suffix=".php">./plugins/*/src/</directory>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="tmp/build/coverage/clover.xml" />
+    </logging>
 </phpunit>
