@@ -21,6 +21,14 @@ guidelines (see CONTRIBUTING.md for more information).
 |-------------|-------------------------|-------------|------------|
 | 2.x support | Support for CakePHP 2.x | NOT STARTED | Unknown    |
 
+## Enhancements
+
+| Enhancement            | Description                                                       | Status      | Ship Date* |
+|------------------------|-------------------------------------------------------------------|-------------|------------|
+| Scrutinizer CI support | Support for Scrutinizer CI (https://scrutinizer-ci.com)           | NOT STARTED | Unknown    |
+| AppVeyor support       | Support for AppVeyor for CI on Windows (https://www.appveyor.com) | NOT STARTED | Unknown    |
+
+
 _* All ship dates are estimates, and depend on the amount of work required
 to implement the feature as well as the resources available to support
 development._
