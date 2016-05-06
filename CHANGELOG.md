@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## [unreleased]
+### Added
+- Coveralls integration and README shield image
+
 ## [v0.4.2] - 2016-05-06
 ### Added
 - planned support for AppVeyor/ScrutinizerCI to roadmap
