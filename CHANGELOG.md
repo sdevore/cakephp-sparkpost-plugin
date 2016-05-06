@@ -2,13 +2,20 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## [v0.4.4] - 2016-05-06
+### Fixed
+- Coveralls integration not working (@robojamison)
+
+### Changed
+- optimized Travis CI configuration file (@robojamison)
+
 ## [v0.4.3] - 2016-05-06
 ### Added
-- Coveralls integration and README shield image
+- Coveralls integration and README shield image (@robojamison)
 
 ## [v0.4.2] - 2016-05-06
 ### Added
-- planned support for AppVeyor/ScrutinizerCI to roadmap
+- planned support for AppVeyor/ScrutinizerCI to roadmap (@robojamison)
 - changelog from Github release notes (@robojamison)
 
 ## [v0.4.1] - 2016-04-26
