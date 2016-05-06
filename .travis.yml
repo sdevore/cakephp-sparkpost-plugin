@@ -10,7 +10,7 @@ php:
 before_script:
   - git clone https://github.com/cakephp/app.git ../app && cd ../app
   - cp config/app.default.php config/app.php
-  - composer require satooshi/php-coveralls:dev-master
+  - composer require satooshi/php-coveralls phpunit/phpunit
   - composer install --dev
   - mkdir -p tmp/logs
   - mkdir -p plugins/SyntaxEra
