@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## [v0.4.2] - 2016-05-06
+### Added
+- planned support for AppVeyor/ScrutinizerCI to roadmap
+- changelog from Github release notes (@robojamison)
+
 ## [v0.4.1] - 2016-04-26
 ### Fixed
 - missing placeholder contributions guidelines file (@ravage84)
@@ -9,9 +14,6 @@ project adheres to [Semantic Versioning](http://semver.org).
 - missing export-ignore rules file for tests and docs (@ravage84)
 - missing placeholder project roadmap file (@ravage84)
 - missing explicit CakePHP 3.x dependency in composer.json (@ravage84)
-
-### Changed
-- created changelog and imported Github releases (@robojamison)
 
 ## [v0.4.0] - 2016-04-13
 ### Fixed
