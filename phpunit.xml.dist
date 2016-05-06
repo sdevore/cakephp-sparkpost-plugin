@@ -11,9 +11,6 @@
         <ini name="apc.enable_cli" value="1"/>
     </php>
     <testsuites>
-        <testsuite name="App Test Suite">
-            <directory>./tests/TestCase</directory>
-        </testsuite>
         <testsuite name="SparkPost Plugin Test Suite">
             <directory>./plugins/SyntaxEra/SparkPost/tests/TestCase</directory>
         </testsuite>
