@@ -15,16 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace SparkPost\Mailer\Transport;
+//namespace SparkPost\Network\Email;
 
-use Cake\Core\Configure;
-use Cake\Mailer\AbstractTransport;
-use Cake\Mailer\Email;
-use Cake\Network\Exception\BadRequestException;
-use Cake\Network\Http\Client;
-use Ivory\HttpAdapter\CakeHttpAdapter;
-use SparkPost\APIResponseException;
-use SparkPost\SparkPost;
+App::uses('HttpSocket', 'Network/Http');
+//use Ivory\HttpAdapter\CakeHttpAdapter;
+//use SparkPost\APIResponseException;
+//use SparkPost\SparkPost;
 
 /**
  * Spark Post Transport Class
@@ -41,7 +37,7 @@ class SparkPostTransport extends AbstractTransport
      * @param \Cake\Mailer\Email $email Email message
      * @return array
      */
-    public function send(Email $email)
+    public function send(CakeEmail $email)
     {
         // Load SparkPost configuration settings
         $apiKey = $this->config('apiKey');
