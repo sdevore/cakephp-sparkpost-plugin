@@ -18,17 +18,15 @@
   },
   "license": [ "MIT" ],
   "require": {
-    "cakephp/cakephp": "~3.0",
+    "cakephp/cakephp": "2.8.*",
     "sparkpost/php-sparkpost": "~1.0"
   },
    "extra": {
-    "branch-alias": {
-      "dev-master": "2.8.x-dev"
-    },
+
     "installer-name": "SparkPost"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.3",
+    "phpunit/phpunit": "3.7.38",
     "satooshi/php-coveralls": "~1.0"
   },
   "autoload": {
