@@ -1,7 +1,12 @@
 # CakePHP SparkPost Plugin
 A CakePHP plugin for sending mail via SparkPost's REST API
 
-![alt text](https://api.travis-ci.org/syntaxera/cakephp-sparkpost-plugin.png "Travis CI build status")
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+[![Build Status](https://api.travis-ci.org/syntaxera/cakephp-sparkpost-plugin.png)](https://travis-ci.org/syntaxera/cakephp-sparkpost-plugin)
+[![Coverage Status](https://coveralls.io/repos/github/syntaxera/cakephp-sparkpost-plugin/badge.svg?branch=master)](https://coveralls.io/github/syntaxera/cakephp-sparkpost-plugin)
+[![Total Downloads](https://img.shields.io/packagist/dt/syntaxera/cakephp-sparkpost-plugin.svg)](https://packagist.org/packages/syntaxera/cakephp-sparkpost-plugin)
+[![Latest Stable Version](https://img.shields.io/packagist/v/syntaxera/cakephp-sparkpost-plugin.svg?label=stable)](https://packagist.org/packages/syntaxera/cakephp-sparkpost-plugin)
+[![Latest Unstable Version](https://img.shields.io/packagist/vpre/syntaxera/cakephp-sparkpost-plugin.svg?label=unstable)](https://packagist.org/packages/syntaxera/cakephp-sparkpost-plugin)
 
 # Introduction
 ## What is SparkPost?

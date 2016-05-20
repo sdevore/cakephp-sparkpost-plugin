@@ -8,9 +8,17 @@ php:
   - 7.0
 
 before_script:
-  - git clone https://github.com/cakephp/app.git ../cakephp && cd ../cakephp
+  - git clone https://github.com/cakephp/app.git ../app && cd ../app
+  - composer require satooshi/php-coveralls phpunit/phpunit
   - cp config/app.default.php config/app.php
-  - composer update
   - mkdir -p plugins/SyntaxEra
-  - mv ../cakephp-sparkpost-plugin plugins/SyntaxEra/SparkPost  
-  - cp plugins/SyntaxEra/SparkPost/phpunit.xml.dist ./phpunit.xml.dist  
+  - mv ../cakephp-sparkpost-plugin plugins/SyntaxEra/SparkPost
+  - cp plugins/SyntaxEra/SparkPost/phpunit.xml.dist .
+  - cp plugins/SyntaxEra/SparkPost/.coveralls.yml .
+
+script:
+  - mkdir -p build/logs
+  - ./vendor/bin/phpunit
+
+after_success:
+  - ./vendor/bin/coveralls -v
