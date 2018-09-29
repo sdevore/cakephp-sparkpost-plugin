@@ -51,7 +51,7 @@ class SparkPostTransport extends AbstractTransport
     public function send(Email $email) {
         // Load SparkPost configuration settings
         $apiKey = $this->getConfig('ScidSparkPost.apiKey');
-
+        $isDebug = Configure::read('debug');
         // Set up HTTP request adapter
         $adapter = new CakeAdaptor(new CakeClient());
 
@@ -59,25 +59,62 @@ class SparkPostTransport extends AbstractTransport
         $sparkpost = new SparkPost($adapter, ['key' => $apiKey]);
 
         // Pre-process CakePHP email object fields
-        $from = (array)$email->getFrom();
+        $fromArray = (array)$email->getFrom();
+        $from = ['email' => array_shift($fromArray)];
+        if (!empty($fromArray)) {
+            $from['name'] = array_shift($fromArray);
+        }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
-            $recipients = [
-                ['address' => []],
-            ];
+            $recipients = [];
+            foreach ($toArray as $toItem) {
+                $to = [
+                    'address' => ['email' => array_shift($toItem)],
+                ];
+                if ($isDebug) {
+                    $to['address']['email'] = Configure::read('Config.adminEmail');
+                }
+                if (!empty($ccItem)) {
+                    $to['address']['name'] = array_shift($toItem);
+                }
+                $recipients[] = $to;
+            }
         } else {
             $recipients = $this->_receipients;
         }
         $message = [
-            'content' => [
+            'recipients' => $recipients,
+            'content'    => [
                 'from'    => $from,
                 'subject' => $email->getSubject(),
                 'html'    => empty($email->message('html')) ? $email->message('text') : $email->message('html'),
                 'text'    => $email->message('text'),
             ],
         ];
-        $cc = $email->getCc();
-        $bcc = $email->getBcc();
+        if (!empty($email->getCc())) {
+            $CCs = $email->getCc();
+            foreach ($CCs as $ccItem) {
+                $cc = [
+                    'address' => ['email' => array_shift($ccItem)],
+                ];
+                if (!empty($ccItem)) {
+                    $cc['address']['name'] = array_shift($ccItem);
+                }
+                $message['cc'][] = $cc;
+            }
+        }
+        if (!empty($email->getBcc())) {
+            $BCCs = $email->getBcc();
+            foreach ($BCCs as $bccItem) {
+                $bcc = [
+                    'address' => ['email' => array_shift($bccItem)],
+                ];
+                if (!empty($ccItem)) {
+                    $bcc['address']['name'] = array_shift($bccItem);
+                }
+                $message['bcc'][] = $bcc;
+            }
+        }
 
 
         // Build message to send
@@ -97,8 +134,8 @@ class SparkPostTransport extends AbstractTransport
             $response = $promise->wait();
             $return = [
                 'result' => 'success',
-                'code'=>$response->getStatusCode(),
-                'body' => $response->getBody(),
+                'code'   => $response->getStatusCode(),
+                'body'   => $response->getBody(),
             ];
             return $return;
         } catch (\Exception $e) {
@@ -108,12 +145,24 @@ class SparkPostTransport extends AbstractTransport
         }
     }
 
-    public function setDescription ($description) {
-        $this->_description = Text::truncate($description, 500 );
+    /**
+     * @param $description Description of the transmission. Maximum length - 1024 bytes
+     * @return $this
+     */
+    public function setDescription($description) {
+        $this->_description = Text::truncate($description, 500);
+        return $this;
     }
 
+    /**
+     * @param $id
+     *
+     * @return $this
+     */
     public function setCampaignId($id) {
         $this->_campaign_id = Text::truncate($id, 60);
+        return $this;
+
     }
 
     /**
@@ -130,7 +179,13 @@ class SparkPostTransport extends AbstractTransport
      * @return $this
      */
     public function addRecipient($email, $name = NULL, $subsitution_data = NULL, $tags = NULL, $metadata = NULL) {
-        $recipient = ['address' => ['email']];
+        $isDebug = Configure::read('debug');
+        if ($isDebug) {
+            $recipient = ['address' => ['email' => Configure::read('Config.adminEmail')]];
+        } else {
+            $recipient = ['address' => ['email' => $email]];
+        }
+
         if (!empty($name)) {
             $recipient['address']['name'] = h($name);
         }
@@ -154,7 +209,7 @@ class SparkPostTransport extends AbstractTransport
      * @return $this
      */
     public function addSubtitutionData($substitution_data) {
-
+        $this->_substitution_data = $substitution_data;
         return $this;
     }
 }
