@@ -19,13 +19,11 @@
   "license": [ "MIT" ],
   "require": {
     "cakephp/cakephp": "~3.0",
-    "sparkpost/php-sparkpost": "~1.0"
+    "php-http/cakephp-adapter": "^0.2.0",
+    "sparkpost/sparkpost": "^2.1"
   },
    "extra": {
-    "branch-alias": {
-      "dev-master": "2.8.x-dev"
-    },
-    "installer-name": "SparkPost"
+    "installer-name": "ScidSparkPost"
   },
   "require-dev": {
     "phpunit/phpunit": "~5.3",
@@ -33,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "SparkPost\\": "src"
+      "ScidSparkPost\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SparkPost\\Test\\": "tests"
+      "ScidSparkPost\\Test\\": "tests"
     }
   }
 }
