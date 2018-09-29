@@ -5,16 +5,22 @@
   "authors": [{
     "name": "Jamison Bryant",
     "homepage": "http://jamisonbryant.com",
-    "role": "Lead Developer"
+    "role": "Origional Developer"
   }, {
+    "name": "Sam DeVore",
+    "homepage": "http://sdevore.com",
+    "role": "Developer of this fork"
+  },
+
+    {
     "name": "CakePHP Community",
-    "homepage": "https://github.com/syntaxera/cakephp-sparkpost-plugin/graphs/contributors"
+    "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin/graphs/contributors"
   }],
   "keywords": [ "cakephp", "plugin", "sparkpost", "mandrill", "email" ],
-  "homepage": "https://github.com/syntaxera/cakephp-sparkpost-plugin",
+  "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin",
   "support": {
-    "issues": "https://github.com/syntaxera/cakephp-sparkpost-plugin/issues",
-    "source": "https://github.com/syntaxera/cakephp-sparkpost-plugin"
+    "issues": "https://github.com/sdevore/cakephp-sparkpost-plugin/issues",
+    "source": "https://github.com/sdevore/cakephp-sparkpost-plugin"
   },
   "license": [ "MIT" ],
   "require": {
