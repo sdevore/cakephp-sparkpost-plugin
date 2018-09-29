@@ -2,33 +2,42 @@
   "name": "sdevore/cakephp-sparkpost-plugin",
   "description": "A CakePHP plugin for sending mail via SparkPost's REST API",
   "type": "cakephp-plugin",
-  "authors": [{
-    "name": "Jamison Bryant",
-    "homepage": "http://jamisonbryant.com",
-    "role": "Origional Developer"
-  }, {
-    "name": "Sam DeVore",
-    "homepage": "http://sdevore.com",
-    "role": "Developer of this fork"
-  },
-
+  "authors": [
     {
-    "name": "CakePHP Community",
-    "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin/graphs/contributors"
-  }],
-  "keywords": [ "cakephp", "plugin", "sparkpost", "mandrill", "email" ],
+      "name": "Jamison Bryant",
+      "homepage": "http://jamisonbryant.com",
+      "role": "Origional Developer"
+    },
+    {
+      "name": "Sam DeVore",
+      "homepage": "http://sdevore.com",
+      "role": "Developer of this fork"
+    },
+    {
+      "name": "CakePHP Community",
+      "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin/graphs/contributors"
+    }
+  ],
+  "keywords": [
+    "cakephp",
+    "plugin",
+    "sparkpost",
+    "email"
+  ],
   "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin",
   "support": {
     "issues": "https://github.com/sdevore/cakephp-sparkpost-plugin/issues",
     "source": "https://github.com/sdevore/cakephp-sparkpost-plugin"
   },
-  "license": [ "MIT" ],
+  "license": [
+    "MIT"
+  ],
   "require": {
     "cakephp/cakephp": "~3.0",
     "php-http/cakephp-adapter": "^0.2.0",
     "sparkpost/sparkpost": "^2.1"
   },
-   "extra": {
+  "extra": {
     "installer-name": "ScidSparkPost"
   },
   "require-dev": {
