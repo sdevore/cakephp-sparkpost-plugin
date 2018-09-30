@@ -37,9 +37,6 @@
     "php-http/cakephp-adapter": "^0.2.0",
     "sparkpost/sparkpost": "^2.1"
   },
-  "extra": {
-    "installer-name": "ScidSparkPost"
-  },
   "require-dev": {
     "phpunit/phpunit": "~5.3",
     "satooshi/php-coveralls": "~1.0"
