@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace SparkPost\Mailer\Transport;
+namespace ScidSparkPost\Mailer\Transport;
 
 use Cake\Core\Configure;
 use Cake\Mailer\AbstractTransport;
@@ -27,6 +27,7 @@ use Cake\Utility\Text;
 use Http\Adapter\Cake\Client as CakeAdaptor;
 use Migrations\CakeAdapter;
 use SparkPost\SparkPost;
+use SparkPost\SparkPostResponse;
 
 /**
  * Spark Post Transport Class
@@ -50,32 +51,32 @@ class SparkPostTransport extends AbstractTransport
      */
     public function send(Email $email) {
         // Load SparkPost configuration settings
-        $apiKey = $this->getConfig('ScidSparkPost.apiKey');
+        if (empty($this->_config['apiKey'])) {
+            $this->_config['apiKey'] = $this->getConfig('ScidSparkPost.apiKey');
+        }
+
         $isDebug = Configure::read('debug');
         // Set up HTTP request adapter
         $adapter = new CakeAdaptor(new CakeClient());
 
         // Create SparkPost API accessor
-        $sparkpost = new SparkPost($adapter, ['key' => $apiKey]);
-
+        $sparkpost = new SparkPost($adapter, ['key' => $this->_config['apiKey']]);
+        $sparkpost->setOptions(['async' => FALSE]);
         // Pre-process CakePHP email object fields
         $fromArray = (array)$email->getFrom();
-        $from = ['email' => array_shift($fromArray)];
-        if (!empty($fromArray)) {
-            $from['name'] = array_shift($fromArray);
+        $from = ['email' => 'sdevore@scidsolutions.com'];
+        if (!empty($fromArray[$from['email']]) && $fromArray[$from['email']] != $from['email']) {
+            $from['name'] = $fromArray[$from['email']];
         }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
             $recipients = [];
-            foreach ($toArray as $toItem) {
+            foreach ($toArray as $email => $name) {
                 $to = [
-                    'address' => ['email' => array_shift($toItem)],
+                    'address' => ['email' => $email],
                 ];
-                if ($isDebug) {
-                    $to['address']['email'] = Configure::read('Config.adminEmail');
-                }
-                if (!empty($ccItem)) {
-                    $to['address']['name'] = array_shift($toItem);
+                if (!$email != $name) {
+                    $to['address']['name'] = $name;
                 }
                 $recipients[] = $to;
             }
@@ -93,24 +94,24 @@ class SparkPostTransport extends AbstractTransport
         ];
         if (!empty($email->getCc())) {
             $CCs = $email->getCc();
-            foreach ($CCs as $ccItem) {
+            foreach ($CCs as $email => $name) {
                 $cc = [
-                    'address' => ['email' => array_shift($ccItem)],
+                    'address' => ['email' => $email],
                 ];
-                if (!empty($ccItem)) {
-                    $cc['address']['name'] = array_shift($ccItem);
+                if (!$email != $name) {
+                    $cc['address']['name'] = $name;
                 }
                 $message['cc'][] = $cc;
             }
         }
         if (!empty($email->getBcc())) {
             $BCCs = $email->getBcc();
-            foreach ($BCCs as $bccItem) {
+            foreach ($BCCs as $email => $name) {
                 $bcc = [
-                    'address' => ['email' => array_shift($bccItem)],
+                    'address' => ['email' => $email],
                 ];
-                if (!empty($ccItem)) {
-                    $bcc['address']['name'] = array_shift($bccItem);
+                if (!$email != $name) {
+                    $bcc['address']['name'] = $name;
                 }
                 $message['bcc'][] = $bcc;
             }
@@ -129,11 +130,12 @@ class SparkPostTransport extends AbstractTransport
         }
 
         // Send message
-        $promise = $sparkpost->transmissions->post($message);
+        /** @var SparkPostResponse $response */
+        $response = $sparkpost->transmissions->post($message);
         try {
-            $response = $promise->wait();
+            $status = $response->getStatusCode() == 200 ? 'success' : 'failure';
             $return = [
-                'result' => 'success',
+                'result' => $status,
                 'code'   => $response->getStatusCode(),
                 'body'   => $response->getBody(),
             ];
