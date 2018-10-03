@@ -26,6 +26,7 @@ use Cake\Http\Client as CakeClient;
 use Cake\Utility\Text;
 use Http\Adapter\Cake\Client as CakeAdaptor;
 use Migrations\CakeAdapter;
+use ScidSparkPost\Utility\ScidSparkPostRecipients;
 use SparkPost\SparkPost;
 use SparkPost\SparkPostResponse;
 
@@ -205,6 +206,7 @@ class SparkPostTransport extends AbstractTransport
         return $this;
     }
 
+
     /**
      * @param array $substitution_data
      *
@@ -213,5 +215,12 @@ class SparkPostTransport extends AbstractTransport
     public function addSubtitutionData($substitution_data) {
         $this->_substitution_data = $substitution_data;
         return $this;
+    }
+
+    /**
+     * @param ScidSparkPostRecipients $receipients
+     */
+    public function setReceipients($receipients): void {
+        $this->_receipients = $receipients->getReceipients();
     }
 }
