@@ -45,8 +45,18 @@
          */
         public function addRecipient($email, $name = NULL, $subsitution_data = NULL, $tags = NULL, $metadata = NULL) {
             $isDebug = Configure::read('debug');
-            if ($isDebug) {
-                $recipient = ['address' => ['email' => Configure::read('Config.adminEmail')]];
+            $isLive = Configure::read('Config.live');
+            $adminEmail = Configure::read('Config.adminEmail');
+            if (empty($adminEmail)) {
+                $adminEmail = Configure::read('Config.systemEmail');
+            }
+            $archiveEmail = Configure::read('Config.archiveEmail');
+            if (empty($archiveEmail)) {
+                $archiveEmail = $adminEmail;
+            }
+            if ($isDebug || !$isLive) {
+
+                $recipient = ['address' => ['email' => $archiveEmail]];
             } else {
                 $recipient = ['address' => ['email' => $email]];
             }

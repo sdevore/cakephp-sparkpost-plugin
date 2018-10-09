@@ -39,7 +39,8 @@ use SparkPost\SparkPostResponse;
  */
 class SparkPostTransport extends AbstractTransport
 {
-    protected $_receipients = []; // array of recipients per sparkpost formats
+    protected $_receipients = NULL;
+    /** @var ScidSparkPostRecipients */
     protected $_substitution_data = [];
     protected $_description = NULL; //Description of the transmission. Maximum length - 1024 bytes
     protected $_campaign_id = NULL; //Name of the campaign. Maximum length - 64 bytes
@@ -71,21 +72,13 @@ class SparkPostTransport extends AbstractTransport
         }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
-            $recipients = [];
+            $this->_receipients = new ScidSparkPostRecipients();
             foreach ($toArray as $email => $name) {
-                $to = [
-                    'address' => ['email' => $email],
-                ];
-                if (!$email != $name) {
-                    $to['address']['name'] = $name;
-                }
-                $recipients[] = $to;
+                $this->_receipients->addRecipient($email, $name);
             }
-        } else {
-            $recipients = $this->_receipients;
         }
         $message = [
-            'recipients' => $recipients,
+            'recipients' => $this->_receipients->getReceipients(),
             'content'    => [
                 'from'    => $from,
                 'subject' => $email->getSubject(),
@@ -182,27 +175,11 @@ class SparkPostTransport extends AbstractTransport
      * @return $this
      */
     public function addRecipient($email, $name = NULL, $subsitution_data = NULL, $tags = NULL, $metadata = NULL) {
-        $isDebug = Configure::read('debug');
-        if ($isDebug) {
-            $recipient = ['address' => ['email' => Configure::read('Config.adminEmail')]];
-        } else {
-            $recipient = ['address' => ['email' => $email]];
-        }
 
-        if (!empty($name)) {
-            $recipient['address']['name'] = h($name);
+        if (NULL == $this->_receipients) {
+            $this->_receipients = new ScidSparkPostRecipients();
         }
-        if (!empty($subsitution_data)) {
-            $recipient['substitution_data'] = $subsitution_data;
-
-        }
-        if (!empty($tags)) {
-            $recipient['tags'] = $tags;
-        }
-        if (!empty($metadata)) {
-            $recipient['metadata'] = $metadata;
-        }
-        $this->_receipients[] = $recipient;
+        $this->_receipients->addRecipient($email, $name, $subsitution_data, $tags, $metadata);
         return $this;
     }
 
@@ -221,6 +198,6 @@ class SparkPostTransport extends AbstractTransport
      * @param ScidSparkPostRecipients $receipients
      */
     public function setReceipients($receipients): void {
-        $this->_receipients = $receipients->getReceipients();
+        $this->_receipients = $receipients;
     }
 }
