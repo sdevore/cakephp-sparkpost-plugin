@@ -39,11 +39,25 @@ use SparkPost\SparkPostResponse;
  */
 class SparkPostTransport extends AbstractTransport
 {
+    /**
+     * Default config for this class
+     *
+     * @var array
+     */
+    protected $_defaultConfig = [];
+
     protected $_receipients = NULL;
     /** @var ScidSparkPostRecipients */
     protected $_substitution_data = [];
     protected $_description = NULL; //Description of the transmission. Maximum length - 1024 bytes
     protected $_campaign_id = NULL; //Name of the campaign. Maximum length - 64 bytes
+
+    protected $_archiveEmail = null;
+
+    public function __construct(array $config = []) {
+        parent::__construct($config);
+    }
+
 
     /**
      * Send mail via SparkPost REST API
