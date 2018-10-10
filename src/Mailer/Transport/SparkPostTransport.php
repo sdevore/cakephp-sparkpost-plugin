@@ -53,7 +53,7 @@ class SparkPostTransport extends AbstractTransport
     protected $_description = NULL; //Description of the transmission. Maximum length - 1024 bytes
     protected $_campaign_id = NULL; //Name of the campaign. Maximum length - 64 bytes
 
-    protected $_archiveEmail = null;
+    protected $_archiveEmail = NULL;
 
     public function __construct(array $config = []) {
         parent::__construct($config);
@@ -81,7 +81,7 @@ class SparkPostTransport extends AbstractTransport
         $sparkpost->setOptions(['async' => FALSE]);
         // Pre-process CakePHP email object fields
         $fromArray = (array)$email->getFrom();
-        foreach ($fromArray as $emailAddress=>$name) {
+        foreach ($fromArray as $emailAddress => $name) {
             $from['email'] = $emailAddress;
             if ($name != $email) {
                 $from['name'] = $name;
@@ -139,12 +139,24 @@ class SparkPostTransport extends AbstractTransport
         if (!empty($this->_substitution_data)) {
             $message['substitution_data'] = $this->_substitution_data;
         }
-
+        if (!empty($email->getAttachments())) {
+            $attachments = $email->getAttachments();
+            $attachementArray = [];
+            foreach ($attachments as $filename => $attachment) {
+                $data = base64_encode(file_get_contents($attachment['file']));
+                $attachementArray[] = [
+                    'name' => $filename,
+                    'type' => $attachment['mimetype'],
+                    'data' => $data,
+                ];
+            }
+            $message['content']['attachments'] = $attachementArray;
+        }
         // Send message
         /** @var SparkPostResponse $response */
         $response = $sparkpost->transmissions->post($message);
         try {
-            $return = new ScidSparkPostResponse(['response'=>$response]);
+            $return = new ScidSparkPostResponse(['response' => $response]);
             return $return;
         } catch (\Exception $e) {
             // TODO: Determine if BRE is the best exception type
