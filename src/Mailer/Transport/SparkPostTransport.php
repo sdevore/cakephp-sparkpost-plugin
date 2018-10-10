@@ -26,6 +26,7 @@ use Cake\Http\Client as CakeClient;
 use Cake\Utility\Text;
 use Http\Adapter\Cake\Client as CakeAdaptor;
 use Migrations\CakeAdapter;
+use ScidSparkPost\Model\Entity\ScidSparkPostResponse;
 use ScidSparkPost\Utility\ScidSparkPostRecipients;
 use SparkPost\SparkPost;
 use SparkPost\SparkPostResponse;
@@ -63,7 +64,7 @@ class SparkPostTransport extends AbstractTransport
      * Send mail via SparkPost REST API
      *
      * @param \Cake\Mailer\Email $email Email message
-     * @return array
+     * @return array|ScidSparkPostResponse
      */
     public function send(Email $email) {
         // Load SparkPost configuration settings
@@ -80,9 +81,11 @@ class SparkPostTransport extends AbstractTransport
         $sparkpost->setOptions(['async' => FALSE]);
         // Pre-process CakePHP email object fields
         $fromArray = (array)$email->getFrom();
-        $from = ['email' => 'sdevore@scidsolutions.com'];
-        if (!empty($fromArray[$from['email']]) && $fromArray[$from['email']] != $from['email']) {
-            $from['name'] = $fromArray[$from['email']];
+        foreach ($fromArray as $emailAddress=>$name) {
+            $from['email'] = $emailAddress;
+            if ($name != $email) {
+                $from['name'] = $name;
+            }
         }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
@@ -141,12 +144,7 @@ class SparkPostTransport extends AbstractTransport
         /** @var SparkPostResponse $response */
         $response = $sparkpost->transmissions->post($message);
         try {
-            $status = $response->getStatusCode() == 200 ? 'success' : 'failure';
-            $return = [
-                'result' => $status,
-                'code'   => $response->getStatusCode(),
-                'body'   => $response->getBody(),
-            ];
+            $return = new ScidSparkPostResponse(['response'=>$response]);
             return $return;
         } catch (\Exception $e) {
             // TODO: Determine if BRE is the best exception type

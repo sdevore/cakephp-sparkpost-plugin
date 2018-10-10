@@ -6,7 +6,7 @@
  * Time: 17:26
  */
 
-namespace  ScidSparkPost;
+namespace  ScidSparkPost\Utility;
 
 use Cake\ORM\Entity;
 
