@@ -18,6 +18,7 @@
 
 namespace ScidSparkPost\Mailer\Transport;
 
+use App\Model\Entity\Program;
 use Cake\Core\Configure;
 use Cake\Mailer\AbstractTransport;
 use Cake\Mailer\Email;
@@ -52,7 +53,7 @@ class SparkPostTransport extends AbstractTransport
     protected $_substitution_data = [];
     protected $_description = NULL; //Description of the transmission. Maximum length - 1024 bytes
     protected $_campaign_id = NULL; //Name of the campaign. Maximum length - 64 bytes
-
+    protected $_subject = NULL;
     protected $_archiveEmail = NULL;
 
     public function __construct(array $config = []) {
@@ -83,15 +84,15 @@ class SparkPostTransport extends AbstractTransport
         $fromArray = (array)$email->getFrom();
         foreach ($fromArray as $emailAddress => $name) {
             $from['email'] = $emailAddress;
-            if ($name != $email) {
+            if ($name != $emailAddress) {
                 $from['name'] = $name;
             }
         }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
             $this->_receipients = new ScidSparkPostRecipients();
-            foreach ($toArray as $email => $name) {
-                $this->_receipients->addRecipient($email, $name);
+            foreach ($toArray as $emailAddress => $name) {
+                $this->_receipients->addRecipient($emailAddress, $name);
             }
         }
         $message = [
@@ -103,13 +104,20 @@ class SparkPostTransport extends AbstractTransport
                 'text'    => $email->message('text'),
             ],
         ];
+        if (!empty($this->getSubject())) {
+            // there is a chance that subject can get encoded and have a wrap added
+            $message['content']['subject'] = $this->getSubject();
+        }
+        elseif (!empty($email->getSubject())) {
+            $message['content']['subject'] = $email->getSubject();
+        }
         if (!empty($email->getCc())) {
             $CCs = $email->getCc();
-            foreach ($CCs as $email => $name) {
+            foreach ($CCs as $emailAddress => $name) {
                 $cc = [
-                    'address' => ['email' => $email],
+                    'address' => ['email' => $emailAddress],
                 ];
-                if (!$email != $name) {
+                if (!$emailAddress != $name) {
                     $cc['address']['name'] = $name;
                 }
                 $message['cc'][] = $cc;
@@ -117,11 +125,11 @@ class SparkPostTransport extends AbstractTransport
         }
         if (!empty($email->getBcc())) {
             $BCCs = $email->getBcc();
-            foreach ($BCCs as $email => $name) {
+            foreach ($BCCs as $emailAddress => $name) {
                 $bcc = [
-                    'address' => ['email' => $email],
+                    'address' => ['email' => $emailAddress],
                 ];
-                if (!$email != $name) {
+                if (!$emailAddress != $name) {
                     $bcc['address']['name'] = $name;
                 }
                 $message['bcc'][] = $bcc;
@@ -223,5 +231,19 @@ class SparkPostTransport extends AbstractTransport
      */
     public function setReceipients($receipients): void {
         $this->_receipients = $receipients;
+    }
+
+    /**
+     * @return null
+     */
+    public function getSubject() {
+        return $this->_subject;
+    }
+
+    /**
+     * @param null $subject
+     */
+    public function setSubject($subject): void {
+        $this->_subject = $subject;
     }
 }
