@@ -241,6 +241,7 @@ class SparkPostTransport extends AbstractTransport
     }
 
     /**
+     * directly set the subject as the email subject inserts a line feed on encoding
      * @param null $subject
      */
     public function setSubject($subject): void {
