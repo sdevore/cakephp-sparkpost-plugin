@@ -22,7 +22,7 @@ use App\Model\Entity\Program;
 use Cake\Core\Configure;
 use Cake\Mailer\AbstractTransport;
 use Cake\Mailer\Email;
-use Cake\Network\Exception\BadRequestException;
+use Cake\Http\Exception\BadRequestException ;
 use Cake\Http\Client as CakeClient;
 use Cake\Utility\Text;
 use Http\Adapter\Cake\Client as CakeAdaptor;
@@ -72,6 +72,9 @@ class SparkPostTransport extends AbstractTransport
         if (empty($this->_config['apiKey'])) {
             $this->_config['apiKey'] = $this->getConfig('ScidSparkPost.apiKey');
         }
+        if (empty($this->_config['sender'])) {
+            $this->_config['sender'] = $this->getConfig('ScidSparkPost.sender');
+        }
 
         $isDebug = Configure::read('debug');
         // Set up HTTP request adapter
@@ -88,6 +91,13 @@ class SparkPostTransport extends AbstractTransport
                 $from['name'] = $name;
             }
         }
+        $replyTo = $from;
+        if (empty($replyTo['name'])) {
+           $replyTo['name'] = 'Community Schools';
+        }
+        if (!empty($this->_config['sender'])) {
+            $from['email'] = $this->_config['sender'];
+        }
         if (empty($this->_receipients)) {
             $toArray = $email->getTo();
             $this->_receipients = new ScidSparkPostRecipients();
@@ -99,6 +109,7 @@ class SparkPostTransport extends AbstractTransport
             'recipients' => $this->_receipients->getReceipients(),
             'content'    => [
                 'from'    => $from,
+                'reply-to'    => __('{0} <{1}>',[$replyTo['name'],$replyTo['email']]),
                 'subject' => $email->getSubject(),
                 'html'    => empty($email->message('html')) ? $email->message('text') : $email->message('html'),
                 'text'    => $email->message('text'),
