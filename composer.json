@@ -1,5 +1,5 @@
 {
-  "name": "sdevore/cakephp-sparkpost-plugin",
+  "name": "sdevore/scid-sparkpost-plugin",
   "description": "A CakePHP plugin for sending mail via SparkPost's REST API",
   "type": "cakephp-plugin",
   "authors": [
@@ -24,10 +24,10 @@
     "sparkpost",
     "email"
   ],
-  "homepage": "https://github.com/sdevore/cakephp-sparkpost-plugin",
+  "homepage": "https://github.com/sdevore/scid-sparkpost-plugin",
   "support": {
-    "issues": "https://github.com/sdevore/cakephp-sparkpost-plugin/issues",
-    "source": "https://github.com/sdevore/cakephp-sparkpost-plugin"
+    "issues": "https://github.com/sdevore/scid-sparkpost-plugin/issues",
+    "source": "https://github.com/sdevore/scid-sparkpost-plugin"
   },
   "license": [
     "MIT"
