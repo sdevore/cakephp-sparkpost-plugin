@@ -46,6 +46,7 @@
         public function addRecipient($email, $name = NULL, $subsitution_data = NULL, $tags = NULL, $metadata = NULL) {
             $isDebug = Configure::read('debug');
             $isLive = Configure::read('Config.live');
+            $test = Configure::read('ScidSparkPost.test');
             $adminEmail = Configure::read('Config.adminEmail');
             if (empty($adminEmail)) {
                 $adminEmail = Configure::read('Config.systemEmail');
@@ -54,9 +55,13 @@
             if (empty($archiveEmail)) {
                 $archiveEmail = $adminEmail;
             }
-            if ($isDebug || !$isLive) {
-
-                $recipient = ['address' => ['email' => $archiveEmail]];
+            if ($isDebug || !$isLive || $test) {
+                if (!empty($test)) {
+                    $recipient = ['address' => ['email' => $test]];
+                }
+                else {
+                    $recipient = ['address' => ['email' => $archiveEmail]];
+                }
             } else {
                 $recipient = ['address' => ['email' => $email]];
             }

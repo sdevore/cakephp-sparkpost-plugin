@@ -58,6 +58,13 @@ class SparkPostTransport extends AbstractTransport
 
     public function __construct(array $config = []) {
         parent::__construct($config);
+        if (empty($this->_config['apiKey'])) {
+            $this->_config['apiKey'] = Configure::read('ScidSparkPost.apiKey');
+        }
+        if (empty($this->_config['sender'])) {
+            $this->_config['sender'] = Configure::read('ScidSparkPost.sender');
+        }
+
     }
 
 
@@ -68,14 +75,6 @@ class SparkPostTransport extends AbstractTransport
      * @return array|ScidSparkPostResponse
      */
     public function send(Email $email) {
-        // Load SparkPost configuration settings
-        if (empty($this->_config['apiKey'])) {
-            $this->_config['apiKey'] = $this->getConfig('ScidSparkPost.apiKey');
-        }
-        if (empty($this->_config['sender'])) {
-            $this->_config['sender'] = $this->getConfig('ScidSparkPost.sender');
-        }
-
         $isDebug = Configure::read('debug');
         // Set up HTTP request adapter
         $adapter = new CakeAdaptor(new CakeClient());
@@ -93,7 +92,7 @@ class SparkPostTransport extends AbstractTransport
         }
         $replyTo = $from;
         if (empty($replyTo['name'])) {
-           $replyTo['name'] = 'Community Schools';
+           $replyTo['name'] = 'System Mailer';
         }
         if (!empty($this->_config['sender'])) {
             $from['email'] = $this->_config['sender'];
